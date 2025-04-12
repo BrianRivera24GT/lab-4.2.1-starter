@@ -10,7 +10,7 @@ URI             | Method | Description
 /pages/<page>   | GET    | Returns the page from backend.get_wiki_page
 """
 
-from flask import render_template, send_file
+from flask import render_template, url_for, send_file
 
 
 def make_endpoints(app, backend):
@@ -24,8 +24,10 @@ def make_endpoints(app, backend):
     def home():
         """Returns the home page."""
         return render_template("main.html",
-                               page_name="Wiki Index",
-                               page_content="Welcome to the Wiki!")
+                           page_name="Wiki Index",
+                           image_url=url_for('static', filename='img/random-cat-skiing.jpeg'),
+                           page_content="")
+
 
     @app.route("/about")
     def about():
